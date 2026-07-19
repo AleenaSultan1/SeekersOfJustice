@@ -1,4 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">انصاف کے متلاشی</string>
+
+    <!-- Case list -->
+    <string name="cases_title">مقدمات</string>
+    <string name="no_cases">ابھی کوئی مقدمہ نہیں۔ نیا مقدمہ شامل کرنے کے لیے + دبائیں۔</string>
+    <string name="add_case">مقدمہ شامل کریں</string>
+    <string name="switch_language">زبان تبدیل کریں</string>
+    <string name="fir_prefix">ایف آئی آر %s</string>
+
+    <!-- Add case dialog -->
+    <string name="fir_number">ایف آئی آر نمبر</string>
+    <string name="full_name">پورا نام</string>
+    <string name="age">عمر</string>
+    <string name="sex">جنس</string>
+    <string name="relation">جرم سے تعلق</string>
+    <string name="save">محفوظ کریں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="error_required">لازمی خانہ</string>
+    <string name="error_invalid_age">درست عمر درج کریں</string>
+    <string name="error_fir_duplicate">اس ایف آئی آر نمبر کا مقدمہ پہلے سے موجود ہے</string>
+
+    <!-- Enums -->
+    <string name="sex_male">مرد</string>
+    <string name="sex_female">عورت</string>
+    <string name="sex_other">دیگر</string>
+    <string name="relation_victim">متاثرہ شخص</string>
+    <string name="relation_witness">گواہ</string>
+    <string name="relation_relative">رشتہ دار</string>
+    <string name="relation_other">دیگر</string>
+    <string name="language_urdu">اردو</string>
+    <string name="language_english">انگریزی</string>
+    <string name="language_auto">خودکار</string>
+    <string name="status_pending">قطار میں</string>
+    <string name="status_processing">کارروائی جاری</string>
+    <string name="status_done">مکمل</string>
+    <string name="status_failed">ناکام</string>
+
+    <!-- Case detail -->
+    <string name="back">واپس</string>
+    <string name="person_summary">عمر %1$d · %2$s · %3$s</string>
+    <string name="memos_title">صوتی بیانات</string>
+    <string name="no_memos">ابھی کوئی بیان نہیں۔ نیا بیان ریکارڈ کرنے کے لیے مائیک دبائیں۔</string>
+    <string name="add_memo">بیان شامل کریں</string>
+    <string name="memo_summary">%1$s · %2$s</string>
+    <string name="retry">دوبارہ کوشش کریں</string>
+
+    <!-- Record screen -->
+    <string name="new_memo">نیا بیان</string>
+    <string name="memo_language">بیان کی زبان</string>
+    <string name="start_recording">ریکارڈنگ شروع کریں</string>
+    <string name="stop_recording">ریکارڈنگ روکیں</string>
+    <string name="tap_to_record">ریکارڈ کرنے کے لیے دبائیں</string>
+    <string name="choose_file">آڈیو فائل منتخب کریں (WAV/FLAC)</string>
+    <string name="recording_ready">ریکارڈنگ تیار ہے · %s</string>
+    <string name="discard">حذف کریں</string>
+    <string name="save_memo">بیان محفوظ کریں</string>
+    <string name="error_unsupported_file">غیر معاون فائل۔ براہ کرم WAV یا FLAC فائل منتخب کریں۔</string>
+
+    <!-- Memo detail -->
+    <string name="memo_title">بیان</string>
+    <string name="play">چلائیں</string>
+    <string name="pause">روکیں</string>
+    <string name="processing_message">نقل تیار ہو رہی ہے… اس میں چند منٹ لگ سکتے ہیں۔</string>
+    <string name="transcription_failed">نقل تیار نہیں ہو سکی</string>
+    <string name="transcript">نقل</string>
+    <string name="english_translation">انگریزی ترجمہ</string>
+    <string name="key_points">اہم نکات</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_transcription">نقل نویسی</string>
+    <string name="notification_transcribing">صوتی بیان کی نقل تیار ہو رہی ہے…</string>
 </resources>

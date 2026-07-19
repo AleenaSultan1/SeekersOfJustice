@@ -1,4 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Seekers of Justice</string>
+
+    <!-- Case list -->
+    <string name="cases_title">Cases</string>
+    <string name="no_cases">No cases yet. Tap + to add one.</string>
+    <string name="add_case">Add case</string>
+    <string name="switch_language">Switch language</string>
+    <string name="fir_prefix">FIR %s</string>
+
+    <!-- Add case dialog -->
+    <string name="fir_number">FIR number</string>
+    <string name="full_name">Full name</string>
+    <string name="age">Age</string>
+    <string name="sex">Sex</string>
+    <string name="relation">Relation to crime</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_required">Required</string>
+    <string name="error_invalid_age">Enter a valid age</string>
+    <string name="error_fir_duplicate">A case with this FIR number already exists</string>
+
+    <!-- Enums -->
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+    <string name="sex_other">Other</string>
+    <string name="relation_victim">Victim</string>
+    <string name="relation_witness">Witness</string>
+    <string name="relation_relative">Relative</string>
+    <string name="relation_other">Other</string>
+    <string name="language_urdu">Urdu</string>
+    <string name="language_english">English</string>
+    <string name="language_auto">Auto</string>
+    <string name="status_pending">Waiting</string>
+    <string name="status_processing">Processing</string>
+    <string name="status_done">Done</string>
+    <string name="status_failed">Failed</string>
+
+    <!-- Case detail -->
+    <string name="back">Back</string>
+    <string name="person_summary">Age %1$d · %2$s · %3$s</string>
+    <string name="memos_title">Voice memos</string>
+    <string name="no_memos">No memos yet. Tap the microphone to add one.</string>
+    <string name="add_memo">Add memo</string>
+    <string name="memo_summary">%1$s · %2$s</string>
+    <string name="retry">Retry</string>
+
+    <!-- Record screen -->
+    <string name="new_memo">New memo</string>
+    <string name="memo_language">Memo language</string>
+    <string name="start_recording">Start recording</string>
+    <string name="stop_recording">Stop recording</string>
+    <string name="tap_to_record">Tap to record</string>
+    <string name="choose_file">Choose audio file (WAV/FLAC)</string>
+    <string name="recording_ready">Recording ready · %s</string>
+    <string name="discard">Discard</string>
+    <string name="save_memo">Save memo</string>
+    <string name="error_unsupported_file">Unsupported file. Please choose a WAV or FLAC file.</string>
+
+    <!-- Memo detail -->
+    <string name="memo_title">Memo</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="processing_message">Transcribing… this may take a few minutes.</string>
+    <string name="transcription_failed">Transcription failed</string>
+    <string name="transcript">Transcript</string>
+    <string name="english_translation">English translation</string>
+    <string name="key_points">Key points</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_transcription">Transcription</string>
+    <string name="notification_transcribing">Transcribing voice memo…</string>
 </resources>
