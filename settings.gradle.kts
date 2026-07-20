@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SeekersOfJustice"
 include(":app")
+include(":whisper")
