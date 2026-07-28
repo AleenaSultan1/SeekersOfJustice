@@ -11,12 +11,13 @@ import com.seekersofjustice.app.ui.memo.MemoDetailScreen
 import com.seekersofjustice.app.ui.record.RecordMemoScreen
 
 @Composable
-fun AppNavHost() {
+fun AppNavHost(onSignOut: () -> Unit) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = CaseListRoute) {
         composable<CaseListRoute> {
             CaseListScreen(
                 onCaseClick = { caseId -> navController.navigate(CaseDetailRoute(caseId)) },
+                onSignOut = onSignOut,
             )
         }
         composable<CaseDetailRoute> {

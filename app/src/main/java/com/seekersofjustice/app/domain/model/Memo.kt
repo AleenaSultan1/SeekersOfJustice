@@ -18,6 +18,11 @@ data class Memo(
     val durationMs: Long,
     val language: MemoLanguage,
     val status: MemoStatus,
+    /** Person giving this statement; null means "same as the case's primary person". */
+    val speakerName: String? = null,
+    val speakerRelation: RelationToCrime? = null,
+    /** Officer who recorded the statement, for audit. */
+    val recordedByUserId: Long? = null,
     val transcript: String? = null,
     val translationEn: String? = null,
     /** ISO code Whisper detected; filled when [language] is [MemoLanguage.AUTO]. */

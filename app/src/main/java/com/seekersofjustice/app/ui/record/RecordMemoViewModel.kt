@@ -14,12 +14,15 @@ import androidx.navigation.toRoute
 import com.seekersofjustice.app.App
 import com.seekersofjustice.app.audio.AudioImporter
 import com.seekersofjustice.app.audio.WavRecorder
+import com.seekersofjustice.app.data.repo.CaseRepository
 import com.seekersofjustice.app.data.repo.MemoRepository
 import com.seekersofjustice.app.domain.model.Memo
 import com.seekersofjustice.app.domain.model.MemoLanguage
 import com.seekersofjustice.app.domain.model.MemoStatus
+import com.seekersofjustice.app.domain.model.RelationToCrime
 import com.seekersofjustice.app.transcription.TranscriptionQueue
 import com.seekersofjustice.app.ui.navigation.RecordMemoRoute
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,8 +34,10 @@ import java.util.UUID
 class RecordMemoViewModel(
     savedStateHandle: SavedStateHandle,
     private val memoRepository: MemoRepository,
+    private val caseRepository: CaseRepository,
     private val transcriptionQueue: TranscriptionQueue,
     private val audioImporter: AudioImporter,
+    private val currentUserId: () -> Long?,
 ) : ViewModel() {
 
     private val caseId: Long = savedStateHandle.toRoute<RecordMemoRoute>().caseId
@@ -51,11 +56,36 @@ class RecordMemoViewModel(
     private val _language = MutableStateFlow(MemoLanguage.URDU)
     val language: StateFlow<MemoLanguage> = _language
 
+    // Speaker defaults to the case's primary person; the officer can change it
+    // so one case can hold statements from different people.
+    private val _speakerName = MutableStateFlow("")
+    val speakerName: StateFlow<String> = _speakerName
+
+    private val _speakerRelation = MutableStateFlow(RelationToCrime.WITNESS)
+    val speakerRelation: StateFlow<RelationToCrime> = _speakerRelation
+
     private val _importError = MutableStateFlow(false)
     val importError: StateFlow<Boolean> = _importError
 
+    init {
+        viewModelScope.launch {
+            caseRepository.observeCaseDetails(caseId).first()?.case?.let { case ->
+                _speakerName.value = case.fullName
+                _speakerRelation.value = case.relation
+            }
+        }
+    }
+
     fun setLanguage(language: MemoLanguage) {
         _language.value = language
+    }
+
+    fun setSpeakerName(name: String) {
+        _speakerName.value = name
+    }
+
+    fun setSpeakerRelation(relation: RelationToCrime) {
+        _speakerRelation.value = relation
     }
 
     fun clearImportError() {
@@ -104,6 +134,9 @@ class RecordMemoViewModel(
                     durationMs = ready.durationMs,
                     language = _language.value,
                     status = MemoStatus.PENDING,
+                    speakerName = _speakerName.value.trim().ifBlank { null },
+                    speakerRelation = _speakerRelation.value,
+                    recordedByUserId = currentUserId(),
                     createdAt = System.currentTimeMillis(),
                 )
             )
@@ -127,8 +160,10 @@ class RecordMemoViewModel(
                 RecordMemoViewModel(
                     savedStateHandle = createSavedStateHandle(),
                     memoRepository = app.container.memoRepository,
+                    caseRepository = app.container.caseRepository,
                     transcriptionQueue = app.container.transcriptionQueue,
                     audioImporter = app.container.audioImporter,
+                    currentUserId = { app.container.currentOfficer.value?.id },
                 )
             }
         }

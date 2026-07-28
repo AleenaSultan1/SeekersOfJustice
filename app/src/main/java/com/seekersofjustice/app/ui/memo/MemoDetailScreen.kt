@@ -26,6 +26,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -40,6 +41,7 @@ import com.seekersofjustice.app.domain.model.Memo
 import com.seekersofjustice.app.domain.model.MemoStatus
 import com.seekersofjustice.app.ui.common.formatDate
 import com.seekersofjustice.app.ui.common.formatDuration
+import com.seekersofjustice.app.ui.common.labelRes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,10 +65,16 @@ fun MemoDetailScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
             )
         },
     ) { padding ->
         val m = memo ?: return@Scaffold
+        val speaker = m.speakerName?.takeIf { it.isNotBlank() }
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -75,6 +83,14 @@ fun MemoDetailScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
+            if (speaker != null) {
+                Text(
+                    if (m.speakerRelation != null)
+                        stringResource(R.string.speaker_summary, speaker, stringResource(m.speakerRelation.labelRes()))
+                    else speaker,
+                    style = MaterialTheme.typography.titleMedium,
+                )
+            }
             Text(
                 formatDate(m.createdAt),
                 style = MaterialTheme.typography.bodyMedium,

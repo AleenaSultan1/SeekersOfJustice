@@ -58,6 +58,12 @@
     <string name="save_memo">بیان محفوظ کریں</string>
     <string name="error_unsupported_file">غیر معاون فائل۔ براہ کرم WAV یا FLAC فائل منتخب کریں۔</string>
 
+    <!-- Speaker (per-statement person) -->
+    <string name="speaker_name">بیان دینے والے کا نام</string>
+    <string name="speaker_relation">جرم سے تعلق</string>
+    <string name="speaker_summary">%1$s · %2$s</string>
+    <string name="use_case_person">مقدمے والے شخص جیسا (%s)</string>
+
     <!-- Memo detail -->
     <string name="memo_title">بیان</string>
     <string name="play">چلائیں</string>
@@ -67,6 +73,35 @@
     <string name="transcript">نقل</string>
     <string name="english_translation">انگریزی ترجمہ</string>
     <string name="key_points">اہم نکات</string>
+
+    <!-- Delete -->
+    <string name="delete">حذف کریں</string>
+    <string name="delete_case">مقدمہ حذف کریں</string>
+    <string name="delete_statement">بیان حذف کریں</string>
+    <string name="delete_case_title">کیا یہ مقدمہ حذف کریں؟</string>
+    <string name="delete_case_message">یہ مقدمہ اور اس کے تمام بیانات — ریکارڈنگ، نقل اور اہم نکات — مستقل طور پر ختم ہو جائیں گے۔ اسے واپس نہیں کیا جا سکتا۔</string>
+    <string name="delete_statement_title">کیا یہ بیان حذف کریں؟</string>
+    <string name="delete_statement_message">ریکارڈنگ، نقل، ترجمہ اور اہم نکات مستقل طور پر ختم ہو جائیں گے۔ اسے واپس نہیں کیا جا سکتا۔</string>
+
+    <!-- Authentication -->
+    <string name="auth_create_title">اپنا پاس کوڈ بنائیں</string>
+    <string name="auth_create_hint">اس آلے پر بیانات کے تحفظ کے لیے 4 ہندسوں کا پاس کوڈ مقرر کریں۔</string>
+    <string name="auth_confirm_title">اپنے پاس کوڈ کی تصدیق کریں</string>
+    <string name="auth_enter_title">اپنا پاس کوڈ درج کریں</string>
+    <string name="auth_officer_name">افسر کا نام</string>
+    <string name="auth_officer_name_hint">مثلاً انسپکٹر اے رضا</string>
+    <string name="auth_passcodes_mismatch">پاس کوڈ مطابقت نہیں رکھتے۔ دوبارہ کوشش کریں۔</string>
+    <string name="auth_wrong_passcode">غلط پاس کوڈ۔</string>
+    <string name="auth_unlock_biometric">فنگر پرنٹ سے کھولیں</string>
+    <string name="auth_biometric_title">انصاف کے متلاشی کھولیں</string>
+    <string name="auth_biometric_subtitle">جاری رکھنے کے لیے اپنی شناخت کی تصدیق کریں</string>
+    <string name="auth_sign_out">سائن آؤٹ</string>
+    <string name="auth_switch_officer">افسر تبدیل کریں</string>
+    <string name="auth_add_officer">دوسرا افسر شامل کریں</string>
+    <string name="auth_continue">جاری رکھیں</string>
+    <string name="auth_delete_digit">ہندسہ حذف کریں</string>
+    <string name="auth_choose_officer">افسر منتخب کریں</string>
+    <string name="recorded_by">ریکارڈ کرنے والے: %s</string>
 
     <!-- Notifications -->
     <string name="notification_channel_transcription">نقل نویسی</string>

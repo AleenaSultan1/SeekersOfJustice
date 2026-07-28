@@ -40,26 +40,32 @@
     <!-- Case detail -->
     <string name="back">Back</string>
     <string name="person_summary">Age %1$d · %2$s · %3$s</string>
-    <string name="memos_title">Voice memos</string>
-    <string name="no_memos">No memos yet. Tap the microphone to add one.</string>
-    <string name="add_memo">Add memo</string>
+    <string name="memos_title">Voice statements</string>
+    <string name="no_memos">No statements yet. Tap the microphone to add one.</string>
+    <string name="add_memo">Add statement</string>
     <string name="memo_summary">%1$s · %2$s</string>
     <string name="retry">Retry</string>
 
     <!-- Record screen -->
-    <string name="new_memo">New memo</string>
-    <string name="memo_language">Memo language</string>
+    <string name="new_memo">New statement</string>
+    <string name="memo_language">Statement language</string>
     <string name="start_recording">Start recording</string>
     <string name="stop_recording">Stop recording</string>
     <string name="tap_to_record">Tap to record</string>
     <string name="choose_file">Choose audio file (WAV/FLAC)</string>
     <string name="recording_ready">Recording ready · %s</string>
     <string name="discard">Discard</string>
-    <string name="save_memo">Save memo</string>
+    <string name="save_memo">Save statement</string>
     <string name="error_unsupported_file">Unsupported file. Please choose a WAV or FLAC file.</string>
 
+    <!-- Speaker (per-statement person) -->
+    <string name="speaker_name">Speaker name</string>
+    <string name="speaker_relation">Relation to crime</string>
+    <string name="speaker_summary">%1$s · %2$s</string>
+    <string name="use_case_person">Same as case (%s)</string>
+
     <!-- Memo detail -->
-    <string name="memo_title">Memo</string>
+    <string name="memo_title">Statement</string>
     <string name="play">Play</string>
     <string name="pause">Pause</string>
     <string name="processing_message">Transcribing… this may take a few minutes.</string>
@@ -68,7 +74,36 @@
     <string name="english_translation">English translation</string>
     <string name="key_points">Key points</string>
 
+    <!-- Delete -->
+    <string name="delete">Delete</string>
+    <string name="delete_case">Delete case</string>
+    <string name="delete_statement">Delete statement</string>
+    <string name="delete_case_title">Delete this case?</string>
+    <string name="delete_case_message">This case and all of its statements — recordings, transcripts and key points — will be permanently removed. This cannot be undone.</string>
+    <string name="delete_statement_title">Delete this statement?</string>
+    <string name="delete_statement_message">The recording, transcript, translation and key points will be permanently removed. This cannot be undone.</string>
+
+    <!-- Authentication -->
+    <string name="auth_create_title">Create your passcode</string>
+    <string name="auth_create_hint">Set a 4-digit passcode to protect statements on this device.</string>
+    <string name="auth_confirm_title">Confirm your passcode</string>
+    <string name="auth_enter_title">Enter your passcode</string>
+    <string name="auth_officer_name">Officer name</string>
+    <string name="auth_officer_name_hint">e.g. Inspector A. Raza</string>
+    <string name="auth_passcodes_mismatch">Passcodes don\'t match. Start again.</string>
+    <string name="auth_wrong_passcode">Incorrect passcode.</string>
+    <string name="auth_unlock_biometric">Unlock with fingerprint</string>
+    <string name="auth_biometric_title">Unlock Seekers of Justice</string>
+    <string name="auth_biometric_subtitle">Confirm your identity to continue</string>
+    <string name="auth_sign_out">Sign out</string>
+    <string name="auth_switch_officer">Switch officer</string>
+    <string name="auth_add_officer">Add another officer</string>
+    <string name="auth_continue">Continue</string>
+    <string name="auth_delete_digit">Delete digit</string>
+    <string name="auth_choose_officer">Choose officer</string>
+    <string name="recorded_by">Recorded by %s</string>
+
     <!-- Notifications -->
     <string name="notification_channel_transcription">Transcription</string>
-    <string name="notification_transcribing">Transcribing voice memo…</string>
+    <string name="notification_transcribing">Transcribing voice statement…</string>
 </resources>
