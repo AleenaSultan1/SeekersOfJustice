@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import com.seekersofjustice.app.domain.model.Memo
 import com.seekersofjustice.app.domain.model.MemoLanguage
 import com.seekersofjustice.app.domain.model.MemoStatus
+import com.seekersofjustice.app.domain.model.RelationToCrime
 
 @Entity(
     tableName = "memos",
@@ -27,6 +28,9 @@ data class MemoEntity(
     val durationMs: Long,
     val language: String,
     val status: String,
+    val speakerName: String? = null,
+    val speakerRelation: String? = null,
+    val recordedByUserId: Long? = null,
     val transcript: String? = null,
     val translationEn: String? = null,
     val detectedLanguage: String? = null,
@@ -42,6 +46,9 @@ fun MemoEntity.toDomain() = Memo(
     durationMs = durationMs,
     language = MemoLanguage.valueOf(language),
     status = MemoStatus.valueOf(status),
+    speakerName = speakerName,
+    speakerRelation = speakerRelation?.let { RelationToCrime.valueOf(it) },
+    recordedByUserId = recordedByUserId,
     transcript = transcript,
     translationEn = translationEn,
     detectedLanguage = detectedLanguage,
@@ -57,6 +64,9 @@ fun Memo.toEntity() = MemoEntity(
     durationMs = durationMs,
     language = language.name,
     status = status.name,
+    speakerName = speakerName,
+    speakerRelation = speakerRelation?.name,
+    recordedByUserId = recordedByUserId,
     transcript = transcript,
     translationEn = translationEn,
     detectedLanguage = detectedLanguage,

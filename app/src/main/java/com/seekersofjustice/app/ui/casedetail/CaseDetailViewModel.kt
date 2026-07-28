@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class CaseDetailViewModel(
     savedStateHandle: SavedStateHandle,
-    caseRepository: CaseRepository,
+    private val caseRepository: CaseRepository,
     private val memoRepository: MemoRepository,
     private val transcriptionQueue: TranscriptionQueue,
 ) : ViewModel() {
@@ -36,6 +36,17 @@ class CaseDetailViewModel(
         viewModelScope.launch {
             memoRepository.markPending(memoId)
             transcriptionQueue.enqueue(memoId)
+        }
+    }
+
+    fun deleteMemo(memoId: Long) {
+        viewModelScope.launch { memoRepository.deleteMemo(memoId) }
+    }
+
+    fun deleteCase(onDeleted: () -> Unit) {
+        viewModelScope.launch {
+            caseRepository.deleteCase(caseId)
+            onDeleted()
         }
     }
 

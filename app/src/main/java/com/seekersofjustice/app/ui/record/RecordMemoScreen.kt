@@ -32,10 +32,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -50,6 +53,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.seekersofjustice.app.R
 import com.seekersofjustice.app.domain.model.MemoLanguage
+import com.seekersofjustice.app.domain.model.RelationToCrime
+import com.seekersofjustice.app.ui.common.EnumDropdown
 import com.seekersofjustice.app.ui.common.formatDuration
 import com.seekersofjustice.app.ui.common.labelRes
 
@@ -62,6 +67,8 @@ fun RecordMemoScreen(
     val context = LocalContext.current
     val step by viewModel.step.collectAsStateWithLifecycle()
     val language by viewModel.language.collectAsStateWithLifecycle()
+    val speakerName by viewModel.speakerName.collectAsStateWithLifecycle()
+    val speakerRelation by viewModel.speakerRelation.collectAsStateWithLifecycle()
     val importError by viewModel.importError.collectAsStateWithLifecycle()
     val recordingState by viewModel.recorder.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -111,6 +118,11 @@ fun RecordMemoScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
             )
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -123,6 +135,23 @@ fun RecordMemoScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
+            OutlinedTextField(
+                value = speakerName,
+                onValueChange = viewModel::setSpeakerName,
+                label = { Text(stringResource(R.string.speaker_name)) },
+                singleLine = true,
+                enabled = step is RecordMemoViewModel.Step.Idle,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            EnumDropdown(
+                label = stringResource(R.string.speaker_relation),
+                options = RelationToCrime.entries,
+                selected = speakerRelation,
+                optionLabel = { stringResource(it.labelRes()) },
+                onSelected = viewModel::setSpeakerRelation,
+                modifier = Modifier.fillMaxWidth(),
+            )
+
             Text(stringResource(R.string.memo_language), style = MaterialTheme.typography.titleMedium)
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
                 MemoLanguage.entries.forEachIndexed { index, option ->
@@ -153,6 +182,10 @@ fun RecordMemoScreen(
                             }
                         },
                         modifier = Modifier.size(96.dp),
+                        colors = IconButtonDefaults.filledIconButtonColors(
+                            containerColor = MaterialTheme.colorScheme.tertiary,
+                            contentColor = MaterialTheme.colorScheme.onTertiary,
+                        ),
                     ) {
                         Icon(
                             Icons.Default.Mic,

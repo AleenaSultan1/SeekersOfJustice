@@ -31,6 +31,10 @@ class CaseListViewModel(private val caseRepository: CaseRepository) : ViewModel(
         _duplicateFirError.value = false
     }
 
+    fun deleteCase(caseId: Long) {
+        viewModelScope.launch { caseRepository.deleteCase(caseId) }
+    }
+
     fun addCase(
         firNumber: String,
         fullName: String,
