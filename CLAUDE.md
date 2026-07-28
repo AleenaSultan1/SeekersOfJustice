@@ -2,6 +2,31 @@
 
 Android prototype for recording and transcribing voice memos ("bayanat") of crime victims/witnesses in Pakistan, organized by FIR-numbered case. Fully offline: transcription runs on-device via whisper.cpp. UI is bilingual English/Urdu with RTL support.
 
+## Project status (as of 2026-07-28)
+
+Working, demoable end-to-end. Built in three prototype stages plus a redesign, all merged to `main`:
+
+- **Stage 1** — Android scaffold, domain models, Room data layer.
+- **Stage 2** — all four screens with FakeTranscriber, audio record/import pipeline, WorkManager transcription, extractive summarizer, en/ur localization.
+- **Stage 3** — real on-device whisper.cpp transcription (bundled quantized Whisper small); the `Transcriber` swap is one line in `AppContainer`.
+- **Redesign** — navy/red/white institutional palette + Punjab Police crest icon; per-user PIN/biometric auth; per-statement speaker (Room v1→v2 migration); delete cases/statements behind a confirmation dialog. Renamed "memo" → "statement" in UI copy.
+
+**Verification state (important — not everything is device-verified):**
+- Device-verified end-to-end: the full auth flow (create officer → PIN → sign in), the crest icon + login, the restyled screens, English (`jfk.wav` → canonical transcript) and Urdu transcription + English translation + key points.
+- Built + compiles + unit-tested but NOT yet driven on a device: the **delete-confirmation dialog** and the **per-statement speaker fields** (the emulator's input pipeline stalled during the redesign session). Verify these next — ideally on a physical phone.
+- Tests: 6 instrumented Room tests + 5 JVM summarizer tests pass. The Room tests were last run against schema v1; re-run after the v2 migration.
+
+**Git:** everything is on `main`. `main` is ahead of `origin/main` and has NOT been pushed (push only when the user asks). The redesign was merged via `feature/professional-redesign`.
+
+**Design reference:** a browser mockup of the restyled UI lives at an Artifact — https://claude.ai/code/artifact/dd9939a5-7b1a-4a76-8111-b2f100fa197d
+
+**Known next steps / gaps:**
+1. Device-verify delete + speaker flows.
+2. **Data-at-rest encryption** is NOT done — the PIN gates the UI, but the Room DB and audio files are plaintext on disk. This is the main hardening step before real deployment with sensitive statements (e.g. SQLCipher + encrypted files).
+3. Biometric unlock is a device-level convenience gated to the selected officer, not a per-user Keystore-bound credential.
+4. Using the official Punjab Police emblem in a deployed app needs authorization from that force.
+5. Emulator needs ≥4 cores / 4 GB RAM and an 8 GB data partition (see below); it was flaky/slow in the last session.
+
 ## Build & run
 
 ```sh
